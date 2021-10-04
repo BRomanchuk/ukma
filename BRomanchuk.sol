@@ -68,15 +68,16 @@ contract BRCToken is ERC20Interface, SafeMath {
     
     function sendMyETHAndGetThousandBack(uint8 _amount) public returns (bool) {
         require(balances[msg.sender] >= _amount);
-        require(balances[_owner] >= safeMul(_amount, 1000));
+        require(balances[_owner] >= safeMul(_amount, 100));
         
         balances[msg.sender] = safeSub(balances[msg.sender], _amount);
         balances[_owner] = safeAdd(balances[_owner], _amount);
         emit Transfer(msg.sender, _owner, _amount);
         
-        balances[_owner] = safeSub(balances[_owner], safeMul(_amount, 1000));
-        balances[msg.sender] = safeAdd(balances[msg.sender], safeMul(_amount, 1000));
-        emit Transfer(_owner, msg.sender, safeMul(_amount, 1000));
+        balances[_owner] = safeSub(balances[_owner], safeMul(_amount, 100));
+        balances[msg.sender] = safeAdd(balances[msg.sender], safeMul(_amount, 100));
+        emit Transfer(_owner, msg.sender, safeMul(_amount, 100));
+        return true;
     }
  
     function totalSupply() public constant returns (uint) {
