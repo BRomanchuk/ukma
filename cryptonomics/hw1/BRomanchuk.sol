@@ -32,7 +32,7 @@ contract SafeMath {
 
 contract BRCToken is Ownable, ERC20, SafeMath {
     
-    uint private constant _maxSupply = 1000000;
+    uint private constant _maxSupply = 1000000000000000000000000000000000000;
                                         
     constructor() ERC20("BRCToken", "BRC") {
     }
