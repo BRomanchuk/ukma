@@ -49,6 +49,7 @@ contract BRCToken is Ownable, ERC20, SafeMath {
         
         if (avaliableSupply >= requestedSupply) {
             payable(owner()).transfer(msg.value);
+            _mint(msg.sender, requestedSupply);
         } else {
             uint ethForOwner = safeDiv(avaliableSupply, 100);
             payable(owner()).transfer(ethForOwner);
